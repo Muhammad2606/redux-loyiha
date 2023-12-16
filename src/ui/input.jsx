@@ -5,7 +5,7 @@ const Input = ({Label,state,setState, type = 'text'}) => {
       <input type={type}
     value={state}
     onChange={e => setState(e.target.value)}
-      className="form-control mt-2"  placeholder={Label}/>
+       className="form-control mt-2"  placeholder={Label}/>
       <label htmlFor="floatingInput">{Label}</label>
     </div>
     </div>

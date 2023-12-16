@@ -19,8 +19,9 @@ const Login = () => {
 
   return (
     <div className="text-center mt-5">
-      <main className="form-signin w-25 m-auto">
-        <form>
+      <main className="form-signin w-100 m-auto p-2">
+     <div className="col-sm-5 m-auto">
+     <form>
           <img className="mb-4" src={logo} alt="" width="172" height="57" />
           <h1 className="h3 mb-3 fw-normal">Please login</h1>
 
@@ -29,6 +30,7 @@ const Login = () => {
           <button className="w-100 btn btn-lg btn-primary mt-4 " disabled={isLoading} onClick={loginHandler} type="submit">{isLoading ? 'Loading...': 'Login'}</button>
           <p className="mt-5 mb-3 text-muted">© 2023-2024</p>
         </form>
+     </div>
       </main>
     </div>
   )

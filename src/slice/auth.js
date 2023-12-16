@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
  const initialState ={
     isLoading: false,
     loggeding:false,
+    error: null,
     user:null,
  }
   const  authSilce = createSlice({
@@ -18,12 +19,18 @@ import { createSlice } from '@reduxjs/toolkit';
         registerUserStart: state => {
             state.isLoading = true
         },
-        registerUserSuccess: state => {},
-        registerUserFailure: state => {},
+        registerUserSuccess: state => {
+            state.loggeding = true
+            state.isLoading = false
+        },
+        registerUserFailure: state => {
+            state.isLoading = false
+            state.error = 'error'
+        },
     }
 
  })
- export const {loginUserStart, registerUserStart} = authSilce.actions
+ export const {loginUserStart, registerUserStart,registerUserSuccess,registerUserFailure} = authSilce.actions
  export default  authSilce.reducer
 
 
