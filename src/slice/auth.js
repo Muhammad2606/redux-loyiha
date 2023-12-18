@@ -1,35 +1,32 @@
 import { createSlice } from '@reduxjs/toolkit';
- const initialState ={
-    isLoading: false,
-    loggeding:false,
-    error: null,
-    user:null,
- }
-  const  authSilce = createSlice({
-    name: 'auth',
-    initialState,
-    reducers:{
-        signUserStart: state =>{
-
-            state.isLoading = true
-        },
-        signUserSuccess: (state,action) =>{
-
-            state.loggeding = true
-            state.isLoading = false
-            state.user = action.payload
-        },
-        signUserFailure: (state, action) =>{
-
-            state.isLoading = false
-            state.error = action.payload
-        }
-        
-    }
-
- })
- export const {signUserStart,signUserSuccess,signUserFailure    } = authSilce.actions
- export default  authSilce.reducer
+import { setItem } from '../helpers/persistens-storege';
+const initialState = {
+	isLoading: false,
+	loggedIn: false,
+	error: null,
+	user: null,
+}
+export const authSlice = createSlice({
+	name: 'auth',
+	initialState,
+	reducers: {
+		signUserStart: state => {
+			state.isLoading = true
+		},
+		signUserSuccess: (state, action) => {
+			state.loggedIn = true
+			state.isLoading = false
+			state.user = action.payload
+			setItem('token', action.payload.token)
+		},
+		signUserFailure: (state, action) => {
+			state.isLoading = false
+			state.error = action.payload
+		},
+	},
+})
+ export const {signUserStart,signUserSuccess,signUserFailure    } = authSlice.actions
+ export default  authSlice.reducer
 
 
 

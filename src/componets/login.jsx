@@ -4,6 +4,8 @@ import Input from '../ui/input'
 import { useDispatch, useSelector } from 'react-redux';
 import {  signUserFailure, signUserStart, signUserSuccess } from '../slice/auth';
 import AuthService from '../service/auth';
+import {ValidationError} from './index'
+
 
 const Login = () => {
   const [email, setEmail] = useState('')
@@ -21,7 +23,8 @@ const Login = () => {
       dispatch(signUserSuccess(response.user))
     } catch (error) {
       console.log();
-      dispatch(signUserFailure())
+      dispatch(signUserFailure(error.response.data.errors))
+      
     }
   }
 
@@ -33,6 +36,7 @@ const Login = () => {
      <form>
           <img className="mb-4" src={logo} alt="" width="172" height="57" />
           <h1 className="h3 mb-3 fw-normal">Please login</h1>
+          <ValidationError />
 
           <Input Label={'Email adress'} type='email' state={email} setState={setEmail} />
           <Input Label={'Password'} type='password' state={password} setState={setPassword} />
@@ -43,6 +47,15 @@ const Login = () => {
       </main>
     </div>
   )
+
+
+
+
+
 }
 
 export default Login
+
+
+
+
