@@ -16,20 +16,18 @@ const Login = () => {
   const { isLoading,loggedIn } = useSelector(state => state.auth)
  const navigate = useNavigate()
  
-  const loginHandler = async e => {
-    e.preventDefault()
-    dispatch(signUserStart())
-    const user = {email, password}
-    try {
-      const response = await AuthService.userLogin(user)
-      dispatch(signUserSuccess(response.user))
-      navigate('/')
-    } catch (error) {
-      console.log();
-      dispatch(signUserFailure(error.response.data.errors))
-      
-    }
+ const loginHandler = async e => {
+  e.preventDefault()
+  dispatch(signUserStart())
+  const user = {email, password}
+  try {
+    const response = await AuthService.userLogin(user)
+    dispatch(signUserSuccess(response.user))
+    navigate('/')
+  } catch (error) {
+    dispatch(signUserFailure(error.response.data.errors))
   }
+}
   useEffect(() => {
 
     if(loggedIn){
@@ -37,7 +35,7 @@ const Login = () => {
 
     }
 
-  }, [])
+  }, [loggedIn])
 
   return (
     <div className="text-center mt-5">

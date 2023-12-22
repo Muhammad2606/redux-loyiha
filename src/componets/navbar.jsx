@@ -1,8 +1,19 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import {logo} from '../constants'
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { removeItem } from "../helpers/persistens-storege"
+import { logoutUser } from "../slice/auth"
 const Navbar = () => {
   const {loggedIn,user} = useSelector(state => state.auth)
+
+  const navigate = useNavigate()
+const dispatch = useDispatch()
+  const Longout =() =>{
+    removeItem('token')
+    dispatch(logoutUser())
+    navigate('/login')
+  }
+
   return (
     <div className="d-flex  navbar align-items-center pb-3 mb-4 border-bottom container pt-3">
         
@@ -14,7 +25,7 @@ const Navbar = () => {
       {loggedIn ? (
         <>
       <p className="fs-4 text-capitalize fw-bold">{user.username}</p>
-      <button className="btn btn-danger">Longout </button>
+      <button className="btn btn-danger" onClick={Longout}>Longout </button>
 
         </>
 

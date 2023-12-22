@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
-import {logo} from '../constants'
+import { logo } from '../constants'
 import Input from '../ui/input'
-import {  signUserFailure, signUserStart, signUserSuccess } from '../slice/auth'
+import { signUserFailure, signUserStart, signUserSuccess } from '../slice/auth'
 import { useDispatch, useSelector } from 'react-redux'
 import AuthService from '../service/auth'
-import {ValidationError} from './index'
+import { ValidationError } from './index'
 import { useNavigate } from 'react-router-dom'
 
 const Register = () => {
@@ -14,15 +14,15 @@ const Register = () => {
   const [password, setPassword] = useState('')
   const dispatch = useDispatch()
   const { isLoading, loggedIn } = useSelector(state => state.auth)
- const navigate = useNavigate()
+  const navigate = useNavigate()
 
 
-  const registerHandler =  async e => {
+  const registerHandler = async e => {
     e.preventDefault()
     dispatch(signUserStart())
-    const user = {username, email , password }
+    const user = { username, email, password }
     try {
-      const response  = await AuthService.userRegister(user)
+      const response = await AuthService.userRegister(user)
       dispatch(signUserSuccess(response.user))
       navigate('/')
     } catch (error) {
@@ -32,34 +32,34 @@ const Register = () => {
 
   useEffect(() => {
 
-    if(loggedIn){
+    if (loggedIn) {
       navigate('/')
 
     }
 
-  }, [])
-  
+  }, [loggedIn])
+
 
   return (
     <div className="text-center mt-5">
       <main className="form-signin w-100 p-2 m-auto row">
         <div className="col-sm-5  m-auto">
-  <form>
+          <form>
 
-    <img className="mb-4" src={logo} alt="" width="172" height="57"/>
-    <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
-    <ValidationError />
-    <Input Label={'Username'} state={username} setState={setUsername} />
-					<Input Label={'Email address'} state={email} setState={setEmail} />
-  		<Input Label={'Password'} type={'password'} state={password} setState={setPassword} />
+            <img className="mb-4" src={logo} alt="" width="172" height="57" />
+            <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
+            <ValidationError />
+            <Input Label={'Username'} state={username} setState={setUsername} />
+            <Input Label={'Email address'} state={email} setState={setEmail} />
+            <Input Label={'Password'} type={'password'} state={password} setState={setPassword} />
 
-            
 
-    <button className="w-100 btn btn-lg btn-primary mt-4 " disabled={isLoading} onClick={registerHandler} type="submit">{isLoading ? 'Loading...': 'Register'}</button>
-    <p className="mt-5 mb-3 text-muted">© 2023-2024</p>
-  </form>
+
+            <button className="w-100 btn btn-lg btn-primary mt-4 " disabled={isLoading} onClick={registerHandler} type="submit">{isLoading ? 'Loading...' : 'Register'}</button>
+            <p className="mt-5 mb-3 text-muted">© 2023-2024</p>
+          </form>
         </div>
-</main>
+      </main>
     </div>
   )
 }
