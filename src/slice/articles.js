@@ -29,12 +29,12 @@ export const articleSlice = createSlice({
             state.isLoading = true
         },
         getArticlesDetilSuccess: (state, action) =>{
-            state.isLoading = true
+            state.isLoading = false
             state.articlesDetil = action.payload
 
         },
         getArticlesDetilFailure: state =>{
-            state.isLoading = false
+            state.isLoading = true
 
         },
 

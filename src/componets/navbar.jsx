@@ -25,7 +25,11 @@ const dispatch = useDispatch()
       {loggedIn ? (
         <>
       <p className="fs-4 text-capitalize fw-bold">{user.username}</p>
-      <button className="btn btn-danger" onClick={Longout}>Longout </button>
+        <div>
+        <Link className="me-3 py-2 link-body-emphasis text-success text-decoration-none" to={'/create-article'}>Create article</Link>
+
+<button className="btn btn-danger" onClick={Longout}>Longout </button>
+        </div>
 
         </>
 
