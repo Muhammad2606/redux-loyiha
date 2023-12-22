@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom"
-import { Login, Main, Navbar, Register } from "./componets"
+import { ArticleDetil, Login, Main, Navbar, Register } from "./componets"
 import AuthService from "./service/auth"
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
@@ -25,7 +25,6 @@ const App = () => {
       try {
         const response = await ArticlesService.getArticles()
         dispatch(getArticleSuccess(response.articles))
-        console.log(response);
       } catch (error) {
         console.log(error);
       }
@@ -45,11 +44,14 @@ const App = () => {
   return (
     <div>
       <Navbar/>
+      <div className="container"> 
       <Routes>
         <Route path="/" element={<Main/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/>
+        <Route path='/article/:slug' element={<ArticleDetil />} />
       </Routes>
+      </div>
     </div>
   )
 }
