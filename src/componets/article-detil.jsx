@@ -11,7 +11,7 @@ const ArticleDetil = () => {
 
   const { slug } = useParams()
   const dispatch = useDispatch()
-  const { articlesDetil,isLoading } = useSelector(state => state.article)
+  const { articlesDetil, isLoading } = useSelector(state => state.article)
   useEffect(() => {
     const getArticleDetil = async () => {
       dispatch(getArticlesDetilStart())
@@ -28,9 +28,9 @@ const ArticleDetil = () => {
 
 
   return isLoading ? (
-		<Loader />
-	) : (
-		articlesDetil !== null && (
+    <Loader />
+  ) : (
+    articlesDetil !== null && (
 
       <div>
 
@@ -52,8 +52,8 @@ const ArticleDetil = () => {
                 <i> 💙 {articlesDetil.favoritesCount}k </i>
               </div>
               <div class="col-md-5 order-md-1">
-           
-              <img className="img-fluid  border rounded-circle border-5 rounded w-75  mx-auto d-block  " src={articlesDetil.author.image} alt={articlesDetil.title} title={articlesDetil.title} />
+
+                <img className="img-fluid  border rounded-circle border-5 rounded w-75  mx-auto d-block  " src={articlesDetil.author.image} alt={articlesDetil.title} title={articlesDetil.title} />
 
               </div>
             </div>
@@ -63,8 +63,8 @@ const ArticleDetil = () => {
         </div>
 
       </div>
-    
-  )
+
+    )
   )
 }
 
