@@ -45,15 +45,15 @@ const ArticleDetil = () => {
             </p>
 
 
-            <div class="row featurette  my-5 w-50 ">
-              <div class="col-md-7 order-md-2 d-flex align-item-center justify-content-center flex-column ">
-                <h2 class="featurette-heading"> {articlesDetil.author.username}  </h2>
-                <p class="lead"> <span className="fw-bold">Tagist</span>  #{articlesDetil.tagList[0]}</p>
-                <i> 💙 {articlesDetil.favoritesCount}k </i>
+            <div className="row featurette  my-5 w-50 ">
+              <div className="col-md-7 order-md-2 d-flex align-item-center justify-content-center flex-column ">
+                <h2 className="featurette-heading"> {articlesDetil.author.username}  </h2>
+                <p className="lead"> <span className="fw-bold">Tagist</span>   #{articlesDetil.tagList[0] ? articlesDetil.tagList[0]  : 'marvel' }  </p>
+                <i> 💙  {articlesDetil.favoritesCount},k </i>
               </div>
-              <div class="col-md-5 order-md-1">
+              <div className="col-md-5 order-md-1">
 
-                <img className="img-fluid  border rounded-circle border-5 rounded w-75  mx-auto d-block  " src={articlesDetil.author.image} alt={articlesDetil.title} title={articlesDetil.title} />
+                <img className="img-fluid  border rounded-circle border-5 rounded w-75  mx-auto d-block  " src={articlesDetil.Image ? articlesDetil.Image :articlesDetil.author.image   } alt={articlesDetil.title} title={articlesDetil.title} />
 
               </div>
             </div>
