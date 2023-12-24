@@ -4,13 +4,13 @@ import { useNavigate } from "react-router-dom"
 import { useEffect } from "react"
 import { getArticleStart, getArticleSuccess } from "../slice/articles"
 import ArticlesService from "../service/articles"
+import { ArticleCard} from "./index.js";
 
 const Main = () => {
 
 
   const { articles, isLoading } = useSelector(state => state.article)
-  const { loggedIn, user } = useSelector(state => state.auth)
-  const navigate = useNavigate()
+ 
   const dispatch = useDispatch()
 
 
@@ -25,14 +25,6 @@ const Main = () => {
   }
 
 
-  const deleteArticle = async slug =>{
-    try {
-        await ArticlesService.deleteArticle(slug)
-        getArticles()
-    } catch (error) {
-      console.log(error);
-    }
-  }
 
   useEffect(() => {
     getArticles()
@@ -51,31 +43,8 @@ const Main = () => {
 
             {articles.map(item => (
 
-              <div className="col" key={item.id}>
-                <div className="card shadow-sm h-100">
-                  <img src={item.author.image} className="img-fluid" alt="" />
-
-                  <div className="card-body">
-                    <a href={item.title} className="card-text fw-bold text-capitalize"> {item.title} </a>
-                    <p className="card-text m-0"> {item.description.slice(0, 140)} </p>
-                  </div>
-                  <div className="d-flex card-footer justify-content-between align-items-center">
-                    <div className="btn-group">
-                      <button onClick={() => navigate(`/article/${item.slug}`)} type="button" className="btn btn-sm btn-outline-success">View</button>
-                      {loggedIn && user.username === item.author.username && (
-                        <>
-                        
-                        <button type="button" className="btn btn-sm btn-outline-secondary"
-                        onClick={() => navigate(`/edit-article/${item.slug}`)}
-                        >Edit</button>
-                        <button type="button" className="btn btn-sm btn-outline-danger" onClick={() => deleteArticle(item.slug)}>Delete</button>
-                        </>
-                      )}
-                    </div>
-                    <small className="text-dark fw-bold">{item.author.username}</small>
-                  </div>
-                </div>
-              </div>
+              <ArticleCard item={item} getArticles={getArticles}/>
+            
             ))}
           </div>
         </div>

@@ -7,3 +7,4 @@ export {default as ValidationError} from './validation-error';
 export {default as CreateArticle} from './create-article';
 export {default as CreateArticleInput} from './create-article-input';
 export {default as EditArticle} from './edit-article';
+export {default as ArticleCard} from './article-card';
