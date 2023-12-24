@@ -9,6 +9,7 @@ const Main = () => {
 
 
   const {articles,isLoading} = useSelector(state => state.article)
+  const {loggedIn, user} = useSelector(state => state.auth)
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
