@@ -56,7 +56,7 @@ const Main = () => {
                   <img src={item.author.image} className="img-fluid" alt="" />
 
                   <div className="card-body">
-                    <p className="card-text fw-bold text-capitalize"> {item.title} </p>
+                    <a href={item.title} className="card-text fw-bold text-capitalize"> {item.title} </a>
                     <p className="card-text m-0"> {item.description.slice(0, 140)} </p>
                   </div>
                   <div className="d-flex card-footer justify-content-between align-items-center">
@@ -65,7 +65,9 @@ const Main = () => {
                       {loggedIn && user.username === item.author.username && (
                         <>
                         
-                        <button type="button" className="btn btn-sm btn-outline-secondary">Edit</button>
+                        <button type="button" className="btn btn-sm btn-outline-secondary"
+                        onClick={() => navigate(`/edit-article/${item.slug}`)}
+                        >Edit</button>
                         <button type="button" className="btn btn-sm btn-outline-danger" onClick={() => deleteArticle(item.slug)}>Delete</button>
                         </>
                       )}

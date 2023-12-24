@@ -10,7 +10,6 @@ const CreateArticle = () => {
     const [title, SetTitle] = useState('')
     const [description, SetDescription] = useState('')
     const [body, SetBody] = useState('')
-    // const [Image, SetImage] = useState('')
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -32,7 +31,7 @@ const CreateArticle = () => {
         console.log(error);
       }
     }
-    const fromProps ={title, SetTitle,description,SetDescription,body,SetBody,formSubmit}
+    const fromProps ={title,SetTitle,description,SetDescription,body,SetBody,formSubmit}
 
   return (
     <div className="text-center ">
