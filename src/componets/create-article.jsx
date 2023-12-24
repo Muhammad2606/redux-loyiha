@@ -1,6 +1,9 @@
 import { useState } from "react";
 import CreateArticleInput from "./create-article-input";
 import ArticlesService from "../service/articles";
+import { useDispatch } from "react-redux";
+import { postArticleFailure, postArticleStart, postArticleSuccess } from "../slice/articles";
+import { useNavigate } from "react-router-dom";
 
 const CreateArticle = () => {
 
@@ -8,17 +11,24 @@ const CreateArticle = () => {
     const [description, SetDescription] = useState('')
     const [body, SetBody] = useState('')
     // const [Image, SetImage] = useState('')
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
 
     
     const formSubmit = async e =>{
      
       e.preventDefault()
-      const article = {title, description, body, Image}
+      const article = {title, description, body}
+      dispatch(postArticleStart())
+
 
       try {
-        const response  = await  ArticlesService.postArticle(article)
-        console.log(response);
+        await  ArticlesService.postArticle(article)
+        dispatch(postArticleSuccess())
+        navigate('/')
       } catch (error) {
+        dispatch(postArticleFailure())
         console.log(error);
       }
     }
