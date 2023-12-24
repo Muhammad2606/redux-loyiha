@@ -24,8 +24,8 @@ const ArticleCard = ({item,getArticles}) => {
       <img src={item.author.image} className="img-fluid" alt="" />
 
       <div className="card-body">
-        <a href={item.title} className="card-text fw-bold text-capitalize"> {item.title} </a>
-        <p className="card-text m-0"> {item.description.slice(0, 140)} </p>
+        <p className="card-text fw-bold text-capitalize"> {item.title} </p>
+        <a target="_blank" href={item.description.slice(0, 140)} className="card-text m-0"> {item.description.slice(0, 140)} </a>
       </div>
       <div className="d-flex card-footer justify-content-between align-items-center">
         <div className="btn-group">

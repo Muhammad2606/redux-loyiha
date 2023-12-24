@@ -39,7 +39,7 @@ const ArticleDetil = () => {
             <div className="col mb-5">
             </div>
             <h1 className='fs-2 fw-bold'>{articlesDetil.title}</h1>
-            <p className="col-md-8 fs-5">{articlesDetil.description}</p>
+            <p className="col-md-8 fs-5"> hosting  <a target="_blank" href={articlesDetil.description.slice(0, 140)} className="card-text m-0"> {articlesDetil.description.slice(0, 140)} </a></p>
             <p className="">
               <span className="fw-bold"> Create at : </span> {moment(articlesDetil.createdAt).format('DD MMM, YYYY hh:mm:ss a')} <br />
               <span className="fw-bold"> Update at : </span> {moment(articlesDetil.updatedAt).format('DD MMM, YYYY hh:mm:ss a' )}
@@ -59,7 +59,7 @@ const ArticleDetil = () => {
               </div>
             </div>
 
-            <p>{articlesDetil.body}</p>
+        <p> gihub   <a  href={articlesDetil.body} target="_blank" >   {articlesDetil.body}  </a></p>
           </div>
         </div>
 
